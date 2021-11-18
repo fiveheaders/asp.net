@@ -1,0 +1,115 @@
+INSERT:
+
+        //Connection
+        SqlConnection conASPTest = new SqlConnection(ConfigurationManager.ConnectionStrings["dbASPTestConnectionString"].ConnectionString);
+
+        //Command
+        SqlCommand comASPTestInsert = new SqlCommand("INSERT INTO tabBestellung (Kundenname, Kundenvorname, Artikelnummer, Artikelanzahl) VALUES (@Kundenname, @Kundenvorname, @Artikelnummer, @Artikelanzahl)");
+        comASPTestInsert.Connection = conASPTest;
+        comASPTestInsert.Parameters.AddWithValue("@Kundenname",    this.txtKundenname.Text);
+        comASPTestInsert.Parameters.AddWithValue("@Kundenvorname", this.txtKundenvorname.Text);
+        comASPTestInsert.Parameters.AddWithValue("@Artikelnummer", this.DropDownList1.SelectedValue);
+        comASPTestInsert.Parameters.AddWithValue("@Artikelanzahl", this.txtArtikelanzahl.Text);
+
+        //Connection öffnen und Command ausführen
+        comASPTestInsert.Connection.Open();
+        comASPTestInsert.ExecuteNonQuery();
+
+        //Connection und Command schliessen
+        comASPTestInsert.Connection.Close();
+        comASPTestInsert.Dispose();
+        conASPTest.Dispose();
+        conASPTest.Close();
+
+        //Felder wieder leeren
+        this.txtKundenname.Text = "";
+        this.txtKundenvorname.Text = "";
+        this.txtArtikelanzahl.Text = "";
+        this.DropDownList1.SelectedValue = "1";
+
+DELETE:
+
+        SqlConnection conASPTest = new SqlConnection(ConfigurationManager.ConnectionStrings["dbASPTestConnectionString"].ConnectionString);
+
+        SqlCommand comASPTestInsert = new SqlCommand("DELETE FROM tabArtikel WHERE Artikelnummer = @Artikelnummer");
+        comASPTestInsert.Connection = conASPTest;
+        comASPTestInsert.Parameters.AddWithValue("@Artikelnummer", this.txtArtikelnummer.Text);
+
+        comASPTestInsert.Connection.Open();
+        comASPTestInsert.ExecuteNonQuery();
+        comASPTestInsert.Connection.Close();
+        comASPTestInsert.Dispose();
+
+        conASPTest.Dispose();
+        conASPTest.Close();
+
+        this.txtArtikelnummer.Text = "";
+
+        GridView1.DataBind();
+        
+UPDATE:
+
+        SqlConnection conASPTest = new SqlConnection(ConfigurationManager.ConnectionStrings["dbASPTestConnectionString"].ConnectionString);
+
+        SqlCommand comASPTestEdit = new SqlCommand("UPDATE tabArtikel SET Artikelname = @Artikelname, Artikelpreis = @Artikelpreis WHERE Artikelnummer = @Artikelnummer");
+        comASPTestEdit.Connection = conASPTest;  
+        comASPTestEdit.Parameters.AddWithValue("@Artikelnummer", this.txtArtikelnummer2.Text);
+        comASPTestEdit.Parameters.AddWithValue("@Artikelname", this.txtArtikelname.Text);
+        comASPTestEdit.Parameters.AddWithValue("@Artikelpreis", this.txtArtikelpreis.Text);
+
+        comASPTestEdit.Connection.Open();
+        comASPTestEdit.ExecuteNonQuery();
+        comASPTestEdit.Connection.Close();
+        comASPTestEdit.Dispose();
+
+        conASPTest.Dispose();
+        conASPTest.Close();
+
+        this.txtArtikelnummer2.Text = "";
+        this.txtArtikelname.Text = "";
+        this.txtArtikelpreis.Text = "";
+
+        GridView1.DataBind();
+
+SELECT:
+
+        //Connection
+        SqlConnection conASPTest = new SqlConnection(ConfigurationManager.ConnectionStrings["dbASPTestConnectionString"].ConnectionString);
+
+        //Labelfeld leeren
+        this.lblArtikel.Text = "";
+
+        //Command erfassen
+        SqlCommand comASPTestEdit = new SqlCommand("SELECT Artikelnummer, Artikelname, Artikelpreis FROM tabArtikel");
+        
+        //Connection zuweisen und öffnen
+        comASPTestEdit.Connection = conASPTest;
+        comASPTestEdit.Connection.Open();
+
+        //Reader executen
+        SqlDataReader drArtikel = comASPTestEdit.ExecuteReader();
+
+        //If-Case -> Kommen bei Abfrage Resultate (Rows)?
+        if(drArtikel.HasRows == true)
+        {
+            //While loop der in Labelfeld Werte der einzelnen Zeilen reinschreibt
+            while (drArtikel.Read())
+            {
+                this.lblArtikel.Text += drArtikel["Artikelnummer"] + " " + drArtikel["Artikelname"] + " " + drArtikel["Artikelpreis"] + "<br />";
+            }
+        } else
+        {
+            this.lblArtikel.Text = "Noch keine Artikel erfasst";
+        }
+
+        //Reader Closen
+        drArtikel.Dispose();
+        drArtikel.Close();
+        
+        //Command Closen
+        comASPTestEdit.Connection.Close();
+        comASPTestEdit.Dispose();
+
+        //Connection Closen
+        conASPTest.Dispose();
+        conASPTest.Close();        
