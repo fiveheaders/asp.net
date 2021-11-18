@@ -1,4 +1,4 @@
-CODE DER LOGINSEIE:
+CODE DER LOGINSEIE: Kommt auf KLick-Ereignis des Login-Buttons
 
    OHNE DB ANBINDUNG:
 
@@ -46,7 +46,7 @@ CODE DER LOGINSEIE:
         conASP.Close();
         
 
-CODE DER ADMINSEITE:
+CODE DER ADMINSEITE: Kommt in PageLoad-Ereignis
 
         //Testen ob User eingeloggt ist
         if(!(Session["LoggedIn"] != null && Session["LoggedIn"].ToString() == "true"))
