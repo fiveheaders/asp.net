@@ -1,0 +1,66 @@
+body {
+    background-color: #60D6A9;
+    font-family: Arial;
+    margin: 0;
+}
+
+#header{
+    margin: 0 auto;
+    background-color: #007046;
+    width: 900px;
+    height: 150px;
+    font-family: Papyrus;
+    font-size: 35px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+#menu {
+    margin: 0 auto;                    /* Zentrieren */
+    background-color: #20815D;
+    width: 900px;
+    height: 20px;
+    padding-left: 20px;
+    box-sizing: border-box;             /* Damit Padding innerhalb des divs angesetzt wird */
+}
+
+#menu ul {
+    list-style-type: none;               /* Keine Bulletpoints */
+    margin: 0;
+    padding: 0;
+}
+
+#menu li {
+    display: inline;                     /* Horizontales Menü */
+    padding: 0 20px 0 20px;
+    background-color: #60D6A9;
+    margin: 0;
+}
+
+#menu li a {
+    text-decoration: none;                 /* Unterstreichen löschen */
+    color: white;
+}
+
+#menu li:hover {
+    background-color: white;
+}
+
+#menu li:hover a{
+    color: #60D6A9;
+}
+
+#content {
+    background-color: #35D699;
+    width: 900px;
+    height: 550px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 20px 0 20px;
+}
+
+h1 {
+    padding-top: 0.67em;
+    margin-top: 0;
+}
