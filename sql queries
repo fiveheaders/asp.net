@@ -1,3 +1,5 @@
+Alle aufs Klick-Ereignis, ausser eventuell Select Abfrage mit ausgelagerter Funktion Daten_Laden(); die bei PageLoad ausgeführt wird.
+
 INSERT:
 
         //Connection
