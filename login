@@ -53,3 +53,9 @@ CODE DER ADMINSEITE: Kommt in PageLoad-Ereignis
         {
             Response.Redirect("login.aspx");
         }
+
+
+    LOGOUT: Auf Klick-Ereignis des Logout-Buttons
+
+        Session.Abandon();
+        Response.Redirect("default.aspx");
