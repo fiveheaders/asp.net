@@ -1,4 +1,6 @@
-OHNE DB ANBINDUNG:
+CODE DER LOGINSEIE:
+
+   OHNE DB ANBINDUNG:
 
         if(txtBenutzername.Text == "Demo" && txtPasswort.Text == "12345")
         {
@@ -11,7 +13,7 @@ OHNE DB ANBINDUNG:
         }
         
         
-MIT DB ANBINDUNG:
+    MIT DB ANBINDUNG:
 
         SqlConnection conASP = new SqlConnection(ConfigurationManager.ConnectionStrings["dbASPTestConnectionString"].ConnectionString);
 
@@ -42,3 +44,12 @@ MIT DB ANBINDUNG:
 
         conASP.Dispose();
         conASP.Close();
+        
+
+CODE DER ADMINSEITE:
+
+        //Testen ob User eingeloggt ist
+        if(!(Session["LoggedIn"] != null && Session["LoggedIn"].ToString() == "true"))
+        {
+            Response.Redirect("login.aspx");
+        }
